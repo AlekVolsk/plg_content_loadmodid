@@ -1,2 +1,3 @@
-# plg_content_loadmodid
-Load module on ID
+# Load modules by ID
+
+Within content this plugin loads Modules by this ID. Syntax: `{loadmodid module_id}`.
