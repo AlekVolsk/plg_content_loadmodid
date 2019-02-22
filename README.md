@@ -11,9 +11,13 @@ Within content this plugin loads Modules by this ID.
 Beneficially differs from the regular Joomla plugin in that it works directly only with the specified module, and does not process the entire list of published modules in the search for the necessary.
 
 Syntax: `{loadmodid module_id[;style]}`, where style is the template style used to display the module.
+
 You can specify one of the following system styles: `html5`, `xhtml`, `table`, `horz`, `rounded`, `outline`, `none`, as well as styles embedded in the system template you are using.
+
 Please note: your system template can override or ignore the style you specified.
+
 The default style to apply is `none`.
+
 Unpublished modules are not processed.
 
 **IMPORTANT**: Avoid calling the module inside yourself! This will lead to the inoperability of your site!
