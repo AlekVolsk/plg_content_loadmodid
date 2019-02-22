@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.8" type="plugin" group="content" method="upgrade">
-	<name>plg_content_loadmodid</name>
-	<version>1.1.0</version>
-	<creationDate>January 2019</creationDate>
-	<author>Aleksey A. Morozov</author>
-	<authorEmail>alekvolsk@yandex.ru</authorEmail>
-	<authorUrl>https://alekvolsk.pw/</authorUrl>
-	<copyright>Copyright (C) 2018 Aleksey A. Morozov. All rights reserved.</copyright>
-	<license>GNU GPL v3 or later; see http://www.gnu.org/licenses/gpl-3.0.txt</license>
-	<description>PLG_LOADMODID_XML_DESCRIPTION</description>
+<extension version="3.7" type="plugin" group="content" method="upgrade">
+	<name>PLG_CONTENT_LOADMODID</name>
+    <author>Aleksey A. Morozov</author>
+    <authorEmail>alekvolsk@yandex.ru</authorEmail>
+    <authorUrl>https://alekvolsk.pw</authorUrl>
+    <copyright>© 2019 Aleksey A. Morozov. All right reserved.</copyright>
+    <license>GNU General Public License version 3 or later; see http://www.gnu.org/licenses/gpl-3.0.txt</license>
+    <creationDate>February 2019</creationDate>
+    <version>1.2.0</version>
+    <description>PLG_LOADMODID_XML_DESCRIPTION</description>
+    <scriptfile>script.php</scriptfile>
 	<files>
 		<filename plugin="loadmodid">loadmodid.php</filename>
 	</files>
 	<languages>
-		<language tag="en-GB">en-GB.plg_content_loadmodid.ini</language>
-		<language tag="en-GB">en-GB.plg_content_loadmodid.sys.ini</language>
-		<language tag="ru-RU">ru-RU.plg_content_loadmodid.ini</language>
-		<language tag="ru-RU">ru-RU.plg_content_loadmodid.sys.ini</language>
+		<language tag="en-GB">languages/en-GB/en-GB.plg_content_loadmodid.ini</language>
+		<language tag="en-GB">languages/en-GB/en-GB.plg_content_loadmodid.sys.ini</language>
+		<language tag="ru-RU">languages/ru-RU/ru-RU.plg_content_loadmodid.ini</language>
+		<language tag="ru-RU">languages/ru-RU/ru-RU.plg_content_loadmodid.sys.ini</language>
 	</languages>
 </extension>
