@@ -20,30 +20,45 @@ class PlgContentLoadmodid extends CMSPlugin
         $matchesmod = [];
         preg_match_all('/{loadmodid\s(.*?)}/i', $article->text, $matchesmod, PREG_SET_ORDER);
 
+        $modules = [];
+        $styles = [];
         if ($matchesmod) {
             foreach ($matchesmod as $matchmod) {
                 $module = explode(';', trim($matchmod[1]));
-                $style = isset($module[1]) ? $module[1] : 'none';
-                $module = (int)$module[0];
-                $output = $this->loadmod($module, $style);
-                $article->text = str_replace($matchmod[0], $output, $article->text);
+                $style = isset($module[1]) ? trim($module[1]) : 'none';
+                $styles[(int)trim($module[0])] = $style;
             }
         }
-    }
 
-    protected function loadmod($module, $style = 'none')
-    {
-        $document = Factory::getDocument();
-        $renderer = $document->loadRenderer('module');
-        $params = ['style' => $style];
+        if ($styles) {
+            $db = Factory::getDbo();
+            $query = $db->getQuery(true);
+            $query
+                ->select('*')
+                ->from('#__modules')
+                ->where('published=1')
+                ->where('id in (' . implode(',', array_keys($styles)) . ')');
+            $tmp = $db->setQuery($query)->loadObjectList();
+            if ($tmp) {
+                foreach ($tmp as $item) {
+                    $modules[$item->id] = $item;
+                    $modules[$item->id]->style = $styles[$item->id];
+                }
+                unset($tmp);
+            }
+        }
 
-        $module = Factory::getDbo()
-            ->setQuery('select * from #__modules where published=1 and id=' . (int)$module)
-            ->loadObject();
-        if ($module) {
-            return $renderer->render($module, $params);
-        } else {
-            return '';
+        if ($modules) {
+            $renderer = Factory::getDocument()->loadRenderer('module');
+            foreach ($matchesmod as $matchmod) {
+                $id = explode(';', trim($matchmod[1]))[0];
+                $output = '';
+                if (isset($modules[$id])) {
+                    $modparams = ['style' => $modules[$id]->style];
+                    $output = $renderer->render($modules[$id], $modparams);
+                }
+                $article->text = str_replace($matchmod[0], $output, $article->text);
+            }
         }
     }
 }
